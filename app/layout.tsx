@@ -8,6 +8,25 @@ import { AuthProvider } from "@/components/auth-provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
+// GA component
+function GoogleAnalytics() {
+  return (
+    <>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-R780C0QL0S"></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-R780C0QL0S');
+          `,
+        }}
+      />
+    </>
+  );
+}
+
 export const metadata: Metadata = {
   title: "Valor Network - The Ultimate Cross-Platform Factions Server",
   description:
@@ -53,7 +72,7 @@ export const metadata: Metadata = {
   verification: {
     google: "your-google-verification-code",
   },
-    generator: 'v0.dev'
+  generator: "v0.dev",
 }
 
 export default function RootLayout({
@@ -63,6 +82,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <GoogleAnalytics />
+      </head>
       <body className={inter.className}>
         <AuthProvider>
           <Navigation />
