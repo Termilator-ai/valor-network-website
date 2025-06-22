@@ -9,6 +9,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  output: 'export',      // <-- add this line for static export
+  trailingSlash: true,   // <-- add this line for GitHub Pages routing
 }
 
 export default nextConfig
