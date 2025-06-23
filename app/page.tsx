@@ -57,28 +57,32 @@ export default function HomePage() {
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
               The Ultimate Cross-Platform Factions Server
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-8 py-3"
-                >
-                  <MessageCircle className="mr-2 h-5 w-5" />
-                  Join Discord
-                </Button>
+                <a href="https://discord.gg/KzBdF4QB4J" target="_blank" rel="noopener noreferrer" >
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-8 py-3"
+                  >
+                    <MessageCircle className="mr-2 h-5 w-5" />
+                    Join Discord
+                  </Button>
+                </a>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-purple-500 text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/20 px-8 py-3"
-                >
-                  <Vote className="mr-2 h-5 w-5" />
-                  Vote for Us
-                </Button>
+                <a href="https://forum.ismaeltech.com/vote/" target="_blank" rel="noopener noreferrer" >
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-purple-500 text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/20 px-8 py-3"
+                  >
+                    <Vote className="mr-2 h-5 w-5" />
+                    Vote for Us
+                  </Button>
+                </a>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/ranks">
+                <a href="https://forum.ismaeltech.com/store/" target="_blank" rel="noopener noreferrer" >
                   <Button
                     size="lg"
                     className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-3"
@@ -86,7 +90,7 @@ export default function HomePage() {
                     <Crown className="mr-2 h-5 w-5" />
                     Buy Ranks
                   </Button>
-                </Link>
+                </a>
               </motion.div>
             </div>
           </motion.div>
