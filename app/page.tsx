@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Users, Zap, Shield, Trophy, MessageCircle, Vote, Crown } from "lucide-react"
 import Link from "next/link"
+import React, { useEffect, useState } from "react"
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -45,6 +46,37 @@ const features = [
 ]
 
 export default function HomePage() {
+  // Live player count state
+  const [playerCount, setPlayerCount] = useState<number | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    async function fetchPlayerCount() {
+      setLoading(true)
+      setError(false)
+      try {
+        const res = await fetch("https://api.mcsrvstat.us/3/play.valornetwork.org")
+        if (!res.ok) throw new Error("API error")
+        const data = await res.json()
+        if (typeof data.players?.online === "number") {
+          setPlayerCount(data.players.online)
+        } else {
+          setPlayerCount(null)
+        }
+      } catch (e) {
+        setError(true)
+        setPlayerCount(null)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchPlayerCount()
+    // Optionally refresh every 60s
+    const interval = setInterval(fetchPlayerCount, 60000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -156,20 +188,24 @@ export default function HomePage() {
                   <CardTitle>Java Edition</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-2xl font-mono font-bold text-blue-600 mb-3">play.valor-mc.xyz</p>
-                  <div className="flex gap-2 justify-center">
-                    <Badge
-                      variant="secondary"
-                      className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                    >
-                      v1.9-1.21.5
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
-                    >
-                      Port 25565
-                    </Badge>
+                  <div className="flex flex-col items-center">
+                    <p className="text-base md:text-lg lg:text-xl font-mono font-bold text-blue-600 mb-3 truncate w-full text-center" style={{maxWidth: '220px'}}>
+                      play.valornetwork.org
+                    </p>
+                    <div className="flex gap-2 justify-center">
+                      <Badge
+                        variant="secondary"
+                        className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                      >
+                        v1.9-1.21.5
+                      </Badge>
+                      <Badge
+                        variant="secondary"
+                        className="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
+                      >
+                        Port 25565
+                      </Badge>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -178,20 +214,24 @@ export default function HomePage() {
                   <CardTitle>Bedrock Edition</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-2xl font-mono font-bold text-purple-600 mb-3">play.valor-mc.xyz</p>
-                  <div className="flex gap-2 justify-center">
-                    <Badge
-                      variant="secondary"
-                      className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
-                    >
-                      v1.21.80
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
-                    >
-                      Port 19132
-                    </Badge>
+                  <div className="flex flex-col items-center">
+                    <p className="text-base md:text-lg lg:text-xl font-mono font-bold text-purple-600 mb-3 truncate w-full text-center" style={{maxWidth: '220px'}}>
+                      play.valornetwork.org
+                    </p>
+                    <div className="flex gap-2 justify-center">
+                      <Badge
+                        variant="secondary"
+                        className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
+                      >
+                        v1.21.81
+                      </Badge>
+                      <Badge
+                        variant="secondary"
+                        className="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
+                      >
+                        Port 25565
+                      </Badge>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -200,7 +240,13 @@ export default function HomePage() {
                   <CardTitle>Players Online</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-3xl font-bold text-green-600">1,247</p>
+                  {loading ? (
+                    <p className="text-3xl font-bold text-gray-400 animate-pulse">Loading...</p>
+                  ) : error ? (
+                    <p className="text-3xl font-bold text-red-500">N/A</p>
+                  ) : (
+                    <p className="text-3xl font-bold text-green-600">{playerCount}</p>
+                  )}
                   <p className="text-sm text-gray-600 dark:text-gray-400">Peak: 2,156</p>
                 </CardContent>
               </Card>

@@ -66,34 +66,45 @@ class NamelessAPI {
   private apiKey: string
 
   constructor() {
-    this.baseUrl = process.env.NEXT_PUBLIC_NAMELESS_API_URL || ""
-    this.apiKey = process.env.NAMELESS_API_KEY || ""
+    // Use the new NamelessMC API base URL (no trailing slash)
+    this.baseUrl = "https://8ddb-172-166-151-116.ngrok-free.app/index.php?route=/api/v2";
+    this.apiKey = "DZtUCJBMh5Vq8XmXbKR5eLNsKh7EYFFbDWZZLJZbWc";
   }
 
   private async request<T>(endpoint: string, options: RequestInit = {}): Promise<NamelessResponse<T>> {
     try {
-      const url = `${this.baseUrl}${endpoint}`
+      // If endpoint starts with /forum/categories, /forum/topics, or /server/info, map to custom PHP endpoints
+      let url = this.baseUrl;
+      if (endpoint.startsWith("/forum/categories")) {
+        url += "/forum_categories&api_key=" + this.apiKey;
+      } else if (endpoint.startsWith("/forum/topics")) {
+        // Support pagination
+        const match = endpoint.match(/\?(.+)$/);
+        url += "/forum_topics&api_key=" + this.apiKey + (match ? "&" + match[1] : "");
+      } else if (endpoint.startsWith("/server/info")) {
+        url += "/server_info&api_key=" + this.apiKey;
+      } else {
+        // fallback for other endpoints
+        url += endpoint;
+      }
       const response = await fetch(url, {
         ...options,
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${this.apiKey}`,
           ...options.headers,
         },
-      })
-
+      });
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-
-      const data = await response.json()
-      return data
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("NamelessMC API Error:", error)
+      console.error("NamelessMC API Error:", error);
       return {
         success: false,
         error: error instanceof Error ? error.message : "Unknown error occurred",
-      }
+      };
     }
   }
 

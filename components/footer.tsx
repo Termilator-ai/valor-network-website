@@ -91,7 +91,7 @@ export function Footer() {
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
           <p>© 2025 Valor Network. All rights reserved.</p>
           <p className="mt-2">
-            <Link href="/privacy" className="hover:text-white transition-colors">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">
               Privacy Policy
             </Link>
             {" • "}
