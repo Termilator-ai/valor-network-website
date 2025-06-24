@@ -3,7 +3,7 @@ name: Deploy Valor Network Website
 on:
   push:
     branches:
-      - main  # or your default branch
+      - codespace-solid-computing-machine-pjp4vq9r4x74c6g4 # or your default branch
 
 jobs:
   build-and-deploy:
