@@ -5,7 +5,9 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Users, Zap, Shield, Trophy, MessageCircle, Vote, Crown } from "lucide-react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
+
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -25,7 +27,7 @@ const features = [
   {
     icon: Users,
     title: "Cross-Platform",
-    description: "Play with friends across Java and Bedrock editions",
+    description: "Play with friends across Java, eagler and Bedrock editions",
   },
   {
     icon: Zap,
@@ -45,6 +47,35 @@ const features = [
 ]
 
 export default function HomePage() {
+  const [playerCount, setPlayerCount] = useState<number | null>(null)
+const [maxPlayers, setMaxPlayers] = useState<number | null>(null)
+
+useEffect(() => {
+  const fetchPlayerData = async () => {
+    try {
+      const res = await fetch("https://mcapi.us/server/status?ip=valormc.lol")
+      const data = await res.json()
+      if (data && data.online) {
+        setPlayerCount(data.players.now)
+        setMaxPlayers(data.players.max)
+      } else {
+        setPlayerCount(null)
+        setMaxPlayers(null)
+      }
+    } catch (err) {
+      console.error("Error fetching player data:", err)
+      setPlayerCount(null)
+      setMaxPlayers(null)
+    }
+  }
+
+  fetchPlayerData()
+
+  // Optional auto-refresh every 30 seconds
+  const interval = setInterval(fetchPlayerData, 30000)
+  return () => clearInterval(interval)
+}, [])
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -156,7 +187,7 @@ export default function HomePage() {
                   <CardTitle>Java Edition</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-2xl font-mono font-bold text-blue-600 mb-3">play.valor-mc.xyz</p>
+                  <p className="text-2xl font-mono font-bold text-blue-600 mb-3">valormc.lol</p>
                   <div className="flex gap-2 justify-center">
                     <Badge
                       variant="secondary"
@@ -175,22 +206,16 @@ export default function HomePage() {
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>Bedrock Edition</CardTitle>
+                  <CardTitle>Eaglercraft Edition</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-2xl font-mono font-bold text-purple-600 mb-3">play.valor-mc.xyz</p>
+                  <p className="text-2xl font-mono font-bold text-purple-600 mb-3">wss://valormc.lol</p>
                   <div className="flex gap-2 justify-center">
                     <Badge
                       variant="secondary"
                       className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
                     >
-                      v1.21.80
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
-                    >
-                      Port 19132
+                      v1.8.8
                     </Badge>
                   </div>
                 </CardContent>
@@ -200,8 +225,13 @@ export default function HomePage() {
                   <CardTitle>Players Online</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-3xl font-bold text-green-600">1,247</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Peak: 2,156</p>
+                  {playerCount !== null && maxPlayers !== null ? (
+                    <p className="text-3xl font-bold text-green-600">
+                      {playerCount.toLocaleString()} / {maxPlayers}
+                    </p>
+                  ) : (
+                    <p className="text-lg text-red-500">Offline or Loading...</p>
+                  )}
                 </CardContent>
               </Card>
             </div>
