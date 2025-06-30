@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://valornetwork.com/sitemap.xml
