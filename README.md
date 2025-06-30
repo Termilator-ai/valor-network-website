@@ -1,30 +1,23 @@
-# New Project
+# Took me sooooooooooooooooo looooooooooooong
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/astrals-projects-b888f969/v0-new-project-gbhyufsaey9)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/GBHyuFSaeY9)
+## Deployement
 
-## Overview
+I was gonna deploy it to vercel or netlify, but i didn't have time, also fuck react and redis :D
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
-
-## Deployment
+## Website
 
 Your project is live at:
 
-**[https://vercel.com/astrals-projects-b888f969/v0-new-project-gbhyufsaey9](https://vercel.com/astrals-projects-b888f969/v0-new-project-gbhyufsaey9)**
+**[ValorNetwork](https://valormc.lol/)**
 
 ## Build your app
 
-Continue building your app on:
+whatever my pc is full of gooning im gonna go download some episodes now babye, if u wanna compile it urself use nodejs18+
 
-**[https://v0.dev/chat/projects/GBHyuFSaeY9](https://v0.dev/chat/projects/GBHyuFSaeY9)**
+## Credits
+Dxrkcords: owner (did nothing but buy domain and stupid partnerships) loves bedrock
+Ismaeltech: absolute W, Server manager, backend dev (i feel bad for u) hates bedrock
+Astralyix (me): website manager and coowner hates bedrock
 
-## How It Works
-
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+^^ these 2 people (especially ismaeltech) are the active developers for the Valor Network, more dev team members will be added soon.
