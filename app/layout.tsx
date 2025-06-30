@@ -5,6 +5,7 @@ import "./globals.css"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { AuthProvider } from "@/components/auth-provider"
+import GoogleAdSense from "@/components/GoogleAdSense"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://valornetwork.com",
+    url: "https://valormc.lol.com",
     title: "Valor Network - The Ultimate Cross-Platform Factions Server",
     description: "Join Valor Network, the premier Minecraft factions server with cross-platform support.",
     siteName: "Valor Network",
@@ -72,7 +73,7 @@ export const metadata: Metadata = {
   verification: {
     google: "your-google-verification-code",
   },
-  generator: "v0.dev",
+  generator: "nothingtoseehere", // Placeholder for generator, can be removed or replaced
 }
 
 export default function RootLayout({
@@ -84,6 +85,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <GoogleAnalytics />
+        <GoogleAdSense publisherId="ca-pub-3523990209984697" />
       </head>
       <body className={inter.className}>
         <AuthProvider>
