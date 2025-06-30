@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Users, Zap, Shield, Trophy, MessageCircle, Vote, Crown } from "lucide-react"
 import { useEffect, useState } from "react"
 import Link from "next/link"
-
+import AdBanner from "@/components/AdBanner"
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
