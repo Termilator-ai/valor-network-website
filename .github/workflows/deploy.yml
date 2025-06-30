@@ -1,4 +1,4 @@
-name: Deploy Valor Network Website
+name: deployer
 
 on:
   push:
