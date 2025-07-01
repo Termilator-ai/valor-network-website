@@ -90,7 +90,7 @@ useEffect(() => {
             </p>
                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <a href="https://discord.gg/KzBdF4QB4J" target="_blank" rel="noopener noreferrer" >
+                <a href="https://valormc.lol/discord" target="_blank" rel="noopener noreferrer" >
                   <Button
                     size="lg"
                     className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-8 py-3"
@@ -101,7 +101,7 @@ useEffect(() => {
                 </a>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <a href="https://forum.ismaeltech.com/vote/" target="_blank" rel="noopener noreferrer" >
+                <a href="https://valormc.lol/vote/" target="_blank" rel="noopener noreferrer" >
                   <Button
                     size="lg"
                     variant="outline"
@@ -113,7 +113,7 @@ useEffect(() => {
                 </a>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <a href="https://forum.ismaeltech.com/store/" target="_blank" rel="noopener noreferrer" >
+                <a href="https://valormc.lol/store/" target="_blank" rel="noopener noreferrer" >
                   <Button
                     size="lg"
                     className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-3"
@@ -230,7 +230,7 @@ useEffect(() => {
                       {playerCount.toLocaleString()} / {maxPlayers}
                     </p>
                   ) : (
-                    <p className="text-lg text-red-500">Offline or Loading...</p>
+                    <p className="text-lg text-red-500">network unreachable</p>
                   )}
                 </CardContent>
               </Card>
