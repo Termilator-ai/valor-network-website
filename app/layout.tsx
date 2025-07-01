@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://valormc.lol.com",
+    url: "https://valormc.lol",
     title: "Valor Network - The Ultimate Cross-Platform Factions Server",
     description: "Join Valor Network, the premier Minecraft factions server with cross-platform support.",
     siteName: "Valor Network",
